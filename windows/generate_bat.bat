@@ -1,8 +1,8 @@
 @echo off
 
 set "CURRENT_DIRECTORY=%~dp0"
-if NOT "%CURRENT_DIRECTORY:~-33%" == "\meowcoin-stratum-proxy\windows\" (
-    if NOT "%CURRENT_DIRECTORY:~-40%" == "\meowcoin-stratum-proxy-master\windows\" (
+if NOT "%CURRENT_DIRECTORY:~-32%" == "\meowcoin-stratum-proxy\windows\" (
+    if NOT "%CURRENT_DIRECTORY:~-37%" == "\meowcoin-stratum-proxy-main\windows\" (
         echo Error: Please run this batch file as-is from its original location in the meowcoin-stratum-proxy folder
 	pause
         exit /B

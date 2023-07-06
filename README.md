@@ -77,8 +77,7 @@ optional arguments:
   --rpcip RPCIP         the ip of the node rpc server to connect to.
   --rpcport RPCPORT     the port of the node rpc server to connect to.
   --rpcuser RPCUSER     the username of the node rpc server to connect to.
-  --rpcpassword RPCPASSWORD
-                        the password of the node rpc server to connect to.
+  --rpcpass RPCPASS     the password of the node rpc server to connect to.
   -t, --testnet         running on testnet
   -j, --jobs            show jobs in the log
   -v, --verbose, --debug
