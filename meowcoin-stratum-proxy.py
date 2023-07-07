@@ -413,7 +413,7 @@ async def stateUpdater(state: TemplateState, old_states, drop_after, verbose, no
                     # Note that there is a max allowed length of arbitrary data.
                     # I forget what it is (TODO lol) but note that this string is close
                     # to the max.
-                    arbitrary_data = b'/meowcoin-proxy-stratum/'
+                    arbitrary_data = b'/meowcoin-stratum-proxy/'
                     coinbase_script = op_push(len(bip34_height)) + bip34_height + op_push(len(arbitrary_data)) + arbitrary_data
                     coinbase_txin = bytes(32) + b'\xff'*4 + var_int(len(coinbase_script)) + coinbase_script + b'\xff'*4
                     vout_to_miner = b'\x76\xa9\x14' + state.pub_h160 + b'\x88\xac'
@@ -495,7 +495,7 @@ async def stateUpdater(state: TemplateState, old_states, drop_after, verbose, no
 
 def main():
 
-    parser = argparse.ArgumentParser(prog="meowcoin-proxy-stratum",
+    parser = argparse.ArgumentParser(prog="meowcoin-stratum-proxy",
                                      description="Stratum proxy to solo mine to MEOWCOIN node.")
     parser.add_argument('--address', default='127.0.0.1',
                         help="the address to listen on, defaults to 127.0.0.1")

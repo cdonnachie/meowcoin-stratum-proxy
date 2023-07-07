@@ -61,14 +61,14 @@ note:
 - Default Mainnet rpcport = `9766`
 - Default Testnet rpcport = `19766`
 
-Make sure you configure the rpcport on `meowcoin-proxy-stratum.py` accordingly.
+Make sure you configure the rpcport on `meowcoin-stratum-proxy.py` accordingly.
 
 <a name="usage"/>
 
 ## Usage:
 The stratum proxy uses the following flags:
 ```
-usage: meowcoin-proxy-stratum [-h] [--address ADDRESS] [--port PORT] [--rpcip RPCIP] [--rpcport RPCPORT] 
+usage: meowcoin-stratum-proxy [-h] [--address ADDRESS] [--port PORT] [--rpcip RPCIP] [--rpcport RPCPORT] 
                  --rpcuser RPCUSER --rpcpass RPCPASS [-t] [-j] [-v] [--version]
 
 Stratum proxy to solo mine to MEOWCOIN node.
@@ -87,21 +87,21 @@ options:
                         set log level to debug
   --version             show program's version number and exit
 ```
-With this in mind we can run **testnet** from a local node with a local miner:
+With this in mind we can run **testnet** from a local node with a miner:
 ```
-python3 meowcoin-proxy-stratum.py --address 127.0.0.1 --port 54321 --rpcip 127.0.0.1  --rpcport 19766 --rpcuser my_username --rpcpassword my_password -j -t
+python3 meowcoin-stratum-proxy.py --address 127.0.0.1 --port 54321 --rpcip 127.0.0.1  --rpcport 19766 --rpcuser my_username --rpcpassword my_password -j -t
 ```
 **Testnet** with defaults
 ```
-python3 meowcoin-proxy-stratum.py --rpcuser my_username --rpcpassword my_password -t
+python3 meowcoin-stratum-proxy.py --rpcuser my_username --rpcpassword my_password -t
 ```
-And for a local node on **mainnet** with an external miner:
+And for a local node on **mainnet** with a miner:
 ```
-python3 meowcoin-proxy-stratum.py --address 127.0.0.1 --port 54321 --rpcip 127.0.0.1  --rpcport 9766 --rpcuser my_username --rpcpassword my_password -j
+python3 meowcoin-stratum-proxy.py --address 127.0.0.1 --port 54321 --rpcip 127.0.0.1  --rpcport 9766 --rpcuser my_username --rpcpassword my_password -j
 ```
 **Mainnet** with defaults
 ```
-python3 meowcoin-proxy-stratum.py --rpcuser my_username --rpcpassword my_password
+python3 meowcoin-stratum-proxy.py --rpcuser my_username --rpcpassword my_password
 ```
 
 Connect to it with your miner of choise:

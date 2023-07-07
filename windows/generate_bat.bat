@@ -191,7 +191,7 @@ echo @echo off>"%FILE_LOCATION%"
 echo echo ==========================================================>>"%FILE_LOCATION%"
 echo echo Connect to your stratum proxy (with a miner) at stratum+tcp://%PROXY_IP%:%PROXY_PORT%>>"%FILE_LOCATION%"
 echo echo ==========================================================>>"%FILE_LOCATION%"
-echo "%CURRENT_DIRECTORY%python_files\python.exe" "%CURRENT_DIRECTORY%..\meowcoin-proxy-stratum.py" --address %PROXY_IP% --port %PROXY_PORT% --rpcip %RPC_IP% --rpcport %RPC_PORT% --rpcuser %RPC_USERNAME%  --rpcpass %RPC_PASSWORD% %TESTNET% %SHOW_JOBS% %VERBOSE%>>"%FILE_LOCATION%"
+echo "%CURRENT_DIRECTORY%python_files\python.exe" "%CURRENT_DIRECTORY%..\meowcoin-stratum-proxy.py" --address %PROXY_IP% --port %PROXY_PORT% --rpcip %RPC_IP% --rpcport %RPC_PORT% --rpcuser %RPC_USERNAME%  --rpcpass %RPC_PASSWORD% %TESTNET% %SHOW_JOBS% %VERBOSE%>>"%FILE_LOCATION%"
 FOR %%A IN ("%~dp0.") DO SET FILE_LOCATION=%%~dpA
 echo done... runnable bat can be found at %FILE_LOCATION%run.bat
 :: Cleanup Variables
