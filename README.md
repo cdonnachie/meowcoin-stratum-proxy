@@ -38,7 +38,7 @@ A bat file is avaliable to auto install python and dependencies and generate ano
 6. Open the `windows` folder
 7. Double-click `generate_bat.bat`
 8. After `generate_bat.bat` completes with no errors, go back to the previous folder.
-9. Double-click `run.bat` to run the stratum converter.
+9. Double-click `run.bat` to run the stratum proxy.
 
 <a name="node"/>
 
@@ -61,16 +61,19 @@ note:
 - Default Mainnet rpcport = `9766`
 - Default Testnet rpcport = `19766`
 
-Make sure you configure the rpcport on `stratum-converter.py` accordingly.
+Make sure you configure the rpcport on `meowcoin-proxy-stratum.py` accordingly.
 
 <a name="usage"/>
 
 ## Usage:
-The stratum converter uses the following flags `usage: meowproxy [-h] [--address ADDRESS] [--port PORT] [--rpcip RPCIP] [--rpcport RPCPORT] --rpcuser RPCUSER --rpcpassword RPCPASSWORD [-t] [-j] [-v] [--version]
+The stratum proxy uses the following flags:
+```
+usage: meowcoin-proxy-stratum [-h] [--address ADDRESS] [--port PORT] [--rpcip RPCIP] [--rpcport RPCPORT] --rpcuser RPCUSER
+                 --rpcpass RPCPASS [-t] [-j] [-v] [--version]
 
 Stratum proxy to solo mine to MEOWCOIN node.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   --address ADDRESS     the address to listen on, defaults to 127.0.0.1
   --port PORT           the port to listen on
@@ -82,23 +85,23 @@ optional arguments:
   -j, --jobs            show jobs in the log
   -v, --verbose, --debug
                         set log level to debug
-  --version             show program's version number and exit` 
-
+  --version             show program's version number and exit
+```
 With this in mind we can run **testnet** from a local node with a local miner:
 ```
-python3 stratum-converter.py --address 127.0.0.1 --port 54321 --rpcip 127.0.0.1  --rpcport 19766 --rpcuser my_username --rpcpassword my_password -j -t
+python3 meowcoin-proxy-stratum.py --address 127.0.0.1 --port 54321 --rpcip 127.0.0.1  --rpcport 19766 --rpcuser my_username --rpcpassword my_password -j -t
 ```
 **Testnet** with defaults
 ```
-python3 stratum-converter.py --rpcuser meocoinuser --rpcpassword meowpassword -t
+python3 meowcoin-proxy-stratum.py --rpcuser meocoinuser --rpcpassword meowpassword -t
 ```
 And for a local node on **mainnet** with an external miner:
 ```
-python3 stratum-converter.py --address 127.0.0.1 --port 54321 --rpcip 127.0.0.1  --rpcport 9766 --rpcuser my_username --rpcpassword my_password -j
+python3 meowcoin-proxy-stratum.py --address 127.0.0.1 --port 54321 --rpcip 127.0.0.1  --rpcport 9766 --rpcuser my_username --rpcpassword my_password -j
 ```
 **Mainnet** with defaults
 ```
-python3 stratum-converter.py --rpcuser meocoinuser --rpcpassword meowpassword
+python3 meowcoin-proxy-stratum.py --rpcuser meocoinuser --rpcpassword meowpassword
 ```
 
 Connect to it with your miner of choise:
@@ -114,11 +117,12 @@ Connect to it with your miner of choise:
 
 ## Help:
 @craigd9686 is avaliable on the community meowcoin server (https://discord.gg/EYv5cCjQRd)
+
 Donate: 
   - MEWC: MPyNGZSSZ4rbjkVJRLn3v64pMcktpEYJnU (Meowcoin Donation address)
 
-
 @kralverde#0550 is avaliable on the community ravencoin server (https://discord.gg/jn6uhur)
+
 Donate: 
   - RVN: RMriWfETGV97hskqH8TvSWVZb9idK6fkU6
   - BTC: bc1q9vs8ttd6sg8dvhwwqh5g6c5wjm0fwkfmq2lgff

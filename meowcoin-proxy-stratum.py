@@ -495,7 +495,7 @@ async def stateUpdater(state: TemplateState, old_states, drop_after, verbose, no
 
 def main():
 
-    parser = argparse.ArgumentParser(prog="meowproxy",
+    parser = argparse.ArgumentParser(prog="meowcoin-proxy-stratum",
                                      description="Stratum proxy to solo mine to MEOWCOIN node.")
     parser.add_argument('--address', default='127.0.0.1',
                         help="the address to listen on, defaults to 127.0.0.1")

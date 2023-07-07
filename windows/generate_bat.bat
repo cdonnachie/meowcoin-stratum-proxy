@@ -104,13 +104,27 @@ goto CHECK_MAINNET
 echo ==========================================================
 for /f "tokens=3 delims=: " %%i  in ('netsh interface ip show config name^="Ethernet" ^| findstr "IP Address"') do set LOCALIP=%%i
 
-set /p "CONVERTER_IP=What is the ip of your converter? (Default %LOCALIP%): "
-if "%CONVERTER_IP%" == "" (
-    set "CONVERTER_IP=%LOCALIP%"
+set /p "PROXY_IP=What is the ip of your proxy? (Default %LOCALIP%): "
+if "%PROXY_IP%" == "" (
+    set "PROXY_IP=%LOCALIP%"
 )
 
 echo ==========================================================
 :POST_CHECK_ADDRESS
+
+:PRE_CHECK_PORT
+
+set /p "PROXY_PORT=What port would you like to run the converter on? (default 54325): "
+if "%PROXY_PORT%" == "" (
+    set "PROXY_PORT=54325"
+)
+
+set /a "TEST_PORT=%PROXY_PORT%+0"
+if %TEST_PORT% LEQ 1024 (
+    echo Not a valid port: %PROXY_PORT%
+	set "PROXY_PORT="
+    goto PRE_CHECK_PORT
+)
 
 echo ==========================================================
 
@@ -169,34 +183,20 @@ IF /I "%TEST_VERBOSE%" NEQ "Y" set "VERBOSE="
 echo ==========================================================
 :POST_CHECK_JOBS
 
-:PRE_CHECK_PORT
-
-set /p "CONVERTER_PORT=What port would you like to run the converter on? (default 54325): "
-if "%CONVERTER_PORT%" == "" (
-    set "CONVERTER_PORT=54325"
-)
-
-set /a "TEST_PORT=%CONVERTER_PORT%+0"
-if %TEST_PORT% LEQ 1024 (
-    echo Not a valid port: %CONVERTER_PORT%
-	set "CONVERTER_PORT="
-    goto PRE_CHECK_PORT
-)
-
 set "TESTNET="
 if NOT defined IS_MAINNET set "TESTNET=-t"
 
 echo generating bat file...
 echo @echo off>"%FILE_LOCATION%"
 echo echo ==========================================================>>"%FILE_LOCATION%"
-echo echo Connect to your stratum converter (with a miner) at stratum+tcp://%CONVERTER_IP%:%CONVERTER_PORT%>>"%FILE_LOCATION%"
+echo echo Connect to your stratum proxy (with a miner) at stratum+tcp://%PROXY_IP%:%PROXY_PORT%>>"%FILE_LOCATION%"
 echo echo ==========================================================>>"%FILE_LOCATION%"
-echo "%CURRENT_DIRECTORY%python_files\python.exe" "%CURRENT_DIRECTORY%..\stratum-converter.py" --address %CONVERTER_IP% --port %CONVERTER_PORT% --rpcip %RPC_IP% --rpcport %RPC_PORT% --rpcuser %RPC_USERNAME%  --rpcpass %RPC_PASSWORD% %TESTNET% %SHOW_JOBS% %VERBOSE%>>"%FILE_LOCATION%"
+echo "%CURRENT_DIRECTORY%python_files\python.exe" "%CURRENT_DIRECTORY%..\meowcoin-proxy-stratum.py" --address %PROXY_IP% --port %PROXY_PORT% --rpcip %RPC_IP% --rpcport %RPC_PORT% --rpcuser %RPC_USERNAME%  --rpcpass %RPC_PASSWORD% %TESTNET% %SHOW_JOBS% %VERBOSE%>>"%FILE_LOCATION%"
 FOR %%A IN ("%~dp0.") DO SET FILE_LOCATION=%%~dpA
 echo done... runnable bat can be found at %FILE_LOCATION%run.bat
 :: Cleanup Variables
-set "CONVERTER_IP="
-set "CONVERTER_PORT="
+set "PROXY_IP="
+set "PROXY_PORT="
 set "RPC_USERNAME="
 set "RPC_PASSWORD="
 set "RPC_IP="
