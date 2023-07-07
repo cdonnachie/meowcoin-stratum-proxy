@@ -68,8 +68,8 @@ Make sure you configure the rpcport on `meowcoin-proxy-stratum.py` accordingly.
 ## Usage:
 The stratum proxy uses the following flags:
 ```
-usage: meowcoin-proxy-stratum [-h] [--address ADDRESS] [--port PORT] [--rpcip RPCIP] [--rpcport RPCPORT] --rpcuser RPCUSER
-                 --rpcpass RPCPASS [-t] [-j] [-v] [--version]
+usage: meowcoin-proxy-stratum [-h] [--address ADDRESS] [--port PORT] [--rpcip RPCIP] [--rpcport RPCPORT] 
+                 --rpcuser RPCUSER --rpcpass RPCPASS [-t] [-j] [-v] [--version]
 
 Stratum proxy to solo mine to MEOWCOIN node.
 
@@ -93,7 +93,7 @@ python3 meowcoin-proxy-stratum.py --address 127.0.0.1 --port 54321 --rpcip 127.0
 ```
 **Testnet** with defaults
 ```
-python3 meowcoin-proxy-stratum.py --rpcuser meocoinuser --rpcpassword meowpassword -t
+python3 meowcoin-proxy-stratum.py --rpcuser my_username --rpcpassword my_password -t
 ```
 And for a local node on **mainnet** with an external miner:
 ```
@@ -101,7 +101,7 @@ python3 meowcoin-proxy-stratum.py --address 127.0.0.1 --port 54321 --rpcip 127.0
 ```
 **Mainnet** with defaults
 ```
-python3 meowcoin-proxy-stratum.py --rpcuser meocoinuser --rpcpassword meowpassword
+python3 meowcoin-proxy-stratum.py --rpcuser my_username --rpcpassword my_password
 ```
 
 Connect to it with your miner of choise:
