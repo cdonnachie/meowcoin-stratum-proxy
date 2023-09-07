@@ -525,9 +525,9 @@ def main():
 
     if args.rpcport is None:
         if args.testnet:
-            args.rpcport = 19776
+            args.rpcport = 19766
         else:
-            args.rpcport = 9776
+            args.rpcport = 9766
     proxy_port = args.port
     proxy_ip = args.address
     node_url = f'http://{args.rpcuser}:{args.rpcpass}@{args.rpcip}:{args.rpcport}'
