@@ -50,6 +50,7 @@ server=1
 rpcuser=my_username
 rpcpassword=my_password
 rpcallowip=127.0.0.1
+rpcbind=0.0.0.0
 ```
 On *nix OS's this file is located at `~/.meowcoin` by default. On windows, this file is located at `%appdata%\Meowcoin`.
 
