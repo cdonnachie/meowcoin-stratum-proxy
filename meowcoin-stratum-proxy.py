@@ -18,7 +18,7 @@ from hashlib import sha256
 from typing import Set, List, Optional
 
 
-KAWPOW_EPOCH_LENGTH = 7500
+MEOWPOW_EPOCH_LENGTH = 7500
 hashratedict = {}
 
 def var_int(i: int) -> bytes:
@@ -359,7 +359,7 @@ async def stateUpdater(state: TemplateState, old_states, drop_after, verbose, no
                     if state.height == - 1 or height_int > state.height:
                         if not state.seedHash:
                             seed_hash = bytes(32)
-                            for _ in range(height_int//KAWPOW_EPOCH_LENGTH):
+                            for _ in range(height_int//MEOWPOW_EPOCH_LENGTH):
                                 k = sha3.keccak_256()
                                 k.update(seed_hash)
                                 seed_hash = k.digest()
@@ -367,7 +367,7 @@ async def stateUpdater(state: TemplateState, old_states, drop_after, verbose, no
                                 state.logger.info('Initialized %s seedhash to \x1b[1m%s\x1b[0m',
                                                                 state.tag, seed_hash.hex())                                
                             state.seedHash = seed_hash
-                        elif state.height % KAWPOW_EPOCH_LENGTH == 0:
+                        elif state.height % MEOWPOW_EPOCH_LENGTH == 0:
                             # Hashing is expensive, so want use the old val
                             k = sha3.keccak_256()
                             k.update(state.seedHash)
@@ -380,10 +380,10 @@ async def stateUpdater(state: TemplateState, old_states, drop_after, verbose, no
                         # Maybe a chain reorg?
                         
                         # If the difference between heights is greater than how far we are into the epoch
-                        if state.height % KAWPOW_EPOCH_LENGTH - (state.height - height_int) < 0:
+                        if state.height % MEOWPOW_EPOCH_LENGTH - (state.height - height_int) < 0:
                             # We must go back an epoch; recalc
                             seed_hash = bytes(32)
-                            for _ in range(height_int//KAWPOW_EPOCH_LENGTH):
+                            for _ in range(height_int//MEOWPOW_EPOCH_LENGTH):
                                 k = sha3.keccak_256()
                                 k.update(seed_hash)
                                 seed_hash = k.digest()
